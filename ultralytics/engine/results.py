@@ -271,7 +271,8 @@ class Results(SimpleClass):
                 c, conf, id = int(d.cls), float(d.conf) if conf else None, None if d.id is None else int(d.id.item())
                 name = ('' if id is None else f'id:{id} ') + names[c]
                 label = (f'{name} {conf:.2f}' if conf else name) if labels else None
-                annotator.box_label(d.xyxy.squeeze(), label, color=colors(c, True))
+                plate = ocr_plate(self.orig_img, d.xyxy.tolist()[0])
+                annotator.box_label(d.xyxy.squeeze(), plate, color=colors(c, True))
 
         # Plot Classify results
         if pred_probs is not None and show_probs:
