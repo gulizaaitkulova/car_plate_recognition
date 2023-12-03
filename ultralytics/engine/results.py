@@ -18,6 +18,33 @@ from ultralytics.utils.plotting import Annotator, colors, save_one_box
 from ultralytics.utils.torch_utils import smart_inference_mode
 
 
+import cv2
+import easyocr
+reader = easyocr.Reader(['en'], gpu=False)
+
+
+def ocr_plate(img, coordinates):
+    """
+        Use easyocr library to get plate number from detected box
+    """
+    # convert coordinates into integers and assign to respective variables
+    coordinates = [int(c) for c in coordinates]
+    x1, y1, x2, y2 = coordinates
+
+    # crop the image and covert to gray
+    img = img[y1:y2, x1:x2]
+    gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+
+    # get result from ocr library
+    result = reader.readtext(gray)
+    plate = ""
+
+    for res in result:
+        if len(res) == 3 and res[2] > 0.2:
+            plate += res[1] + " "
+    
+    return plate
+
 class BaseTensor(SimpleClass):
     """Base tensor class with additional methods for easy manipulation and device handling."""
 
