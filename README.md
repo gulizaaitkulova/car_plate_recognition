@@ -274,3 +274,36 @@ For Ultralytics bug reports and feature requests please visit [GitHub Issues](ht
   <img src="https://github.com/ultralytics/assets/raw/main/social/logo-transparent.png" width="3%" alt="space">
   <a href="https://ultralytics.com/discord"><img src="https://github.com/ultralytics/assets/raw/main/social/logo-social-discord.png" width="3%" alt="Ultralytics Discord"></a>
 </div>
+
+
+# Team C: Automatic Number Plate Detection & Recognition using YOLOv8
+
+## Steps to Run the Code
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/gulizaaitkulova/car_plate_recognition.git
+    ```
+
+2. Navigate to the cloned folder:
+    ```bash
+    cd car_plate_recognition
+    ```
+
+3. Install dependencies:
+    ```bash
+    pip install -e '.[dev]'
+    ```
+
+4. Set the directory:
+    ```bash
+    cd ultralytics
+    ```
+
+
+7. Run the code for License Plate Detection:
+    ```bash
+    python predict.py model='best.pt' source='demo.mp4'
+    ```
+
+
